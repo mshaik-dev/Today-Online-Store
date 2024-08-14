@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@shopify/cli": "^3.65.3",
+    "@shopify/theme": "^3.58.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.10"
+  }
+}
