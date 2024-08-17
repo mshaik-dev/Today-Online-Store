@@ -1,0 +1,54 @@
+<div class="w-full py-6 px-3">
+  <div class="border bg-white rounded-lg shadow-lg overflow-hidden">
+      <a href="{{ product_product.url  }}">
+          {% if product_product.featured_image %}
+          <div class="h-80 overflow-hidden">
+              <img class="w-full h-full object-cover transition duration-1000 ease-in-out hover:scale-105 transform" src="{{ product_product.featured_image | img_url:" medium"
+                  }}" alt="{{ product_product.featured_image.alt }}">
+          </div>
+          {% else %}
+          v {{'product-1' | placeholder_svg_tag:'w-full object-cover bg-gray-100'}}
+          {% endif %}
+      </a>
+      <div class="flex flex-col p-4">
+          <span class="text-sm">{{product_product.vendor}}</span>
+          <a href="{{ product_product.url }}" class="text-gray-700 uppercase font-medium">{{ product_product.title }}</a>
+          <p class="text-gray-500">{{ product_product.price| money}}</p>
+      </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+{% comment %} {% assign current_variant = product_product.selected_or_first_available_variant %}
+{% assign featured_image = current_variant.featured_image | default: product_product.featured_image %}
+{% for image in product_product.images %}
+  <a href="{{ image.src | img_url: 'large' }}">
+    <img src="{{ image.src | img_url: 'compact' }}" alt="{{ image.alt | escape }}">
+  </a>
+{% endfor %}
+<h1>{{ product_product.title }}</h1>
+<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+  <select name="id" id="productSelect">
+    {% for variant in product_product.variants %}
+      {% if variant.available %}
+        <option value="{{ variant.id }}">
+          {{ variant.title }} - {{ variant.price | money_with_currency }}
+        </option>
+      {% else %}
+        <option disabled="disabled">
+          {{ variant.title }} - sold out
+        </option>
+      {% endif %}
+    {% endfor %}
+  </select>
+  {{ current_variant.price | money }}
+  <label for="Quantity">quantity</label>
+  <input type="number" id="Quantity" name="quantity" value="1" min="1">
+  <button type="submit" name="add" id="AddToCart">Add to cart</button>
+</form>
+<div>{{ product_product.description }}</div> {% endcomment %}
