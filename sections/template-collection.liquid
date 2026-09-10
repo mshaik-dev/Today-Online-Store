@@ -1,5 +1,5 @@
 <div class="px-4 py-8">
-    {% paginate collection.products section.settings.number_of_products_per_page %}
+    {% paginate collection.products by nil %}
     <h1 class="text-3xl text-cenet">{{ collection.title }}</h1>
     <div class="max-w-6xl mx-auto">
         <div class="grid grid-col-1 md:grid-cols-3 gap-4">
@@ -72,4 +72,14 @@
 {% if paginate.pages > 1 %}{{ paginate | default_pagination }}{% endif %}
 {% endpaginate %}
 
-{% endcomment %}
+{% endcomment %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{% paginate collection.products section.settings.number_of_products_per_page
+    %}"
+  to: "{% paginate collection.products by nil %}"
+  position: 29..70
+{%- endcomment -%}
